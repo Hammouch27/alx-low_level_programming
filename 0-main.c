@@ -1,17 +1,32 @@
-#include "0-object_like_macro.h"
-#include "0-object_like_macro.h"
+#include <stdlib.h>
+#include <string.h>
 #include <stdio.h>
+#include "lists.h"
 
 /**
  * main - check the code
- *
+ * 
  * Return: Always 0.
  */
 int main(void)
 {
-    int s;
+    listint_t *head;
+    listint_t *new;
+    listint_t hello = {8, NULL};
+    size_t n;
 
-    s = 98 + SIZE;
-    printf("%d\n", s);
+    head = &hello;
+    new = malloc(sizeof(listint_t));
+    if (new == NULL)
+    {
+        printf("Error\n");
+        return (1);
+    }
+    new->n = 9;
+    new->next = head;
+    head = new;
+    n = print_listint(head);
+    printf("-> %lu elements\n", n);
+    free(new);
     return (0);
 }
